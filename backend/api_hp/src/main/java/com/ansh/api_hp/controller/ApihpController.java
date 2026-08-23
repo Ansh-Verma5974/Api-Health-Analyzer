@@ -1,6 +1,7 @@
 package com.ansh.api_hp.controller;
 
 import com.ansh.api_hp.entity.Apihp;
+import com.ansh.api_hp.entity.HealthCheck;
 import com.ansh.api_hp.service.ApihpService;
 import com.ansh.api_hp.service.HpChckrService;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +28,22 @@ public class ApihpController {
     }
 
     @GetMapping("/{id}/check")
-    public String checkApi(@PathVariable Long id) {
+    public HealthCheck checkApi(@PathVariable Long id) {
 
         Apihp apihp = apihpService.getApiById(id);
 
-        return hpChckrService.checkApi(apihp.getUrl());
+        return hpChckrService.checkApi(
+                apihp.getId(),
+                apihp.getUrl()
+        );    }
+    @GetMapping("/{id}/history")
+    public List<HealthCheck> getHistory(@PathVariable Long id) {
+
+        return hpChckrService.getHistory(id);
+    }
+    @GetMapping("/{id}/uptime")
+    public double getUptime(@PathVariable Long id) {
+
+        return hpChckrService.calculateUptime(id);
     }
 }

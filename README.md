@@ -20,8 +20,6 @@
 
 The current version provides a foundation for a full API monitoring platform. APIs can be registered through REST endpoints, stored in MySQL, retrieved when required, and manually health-checked.
 
-> 🟢 **Current progress:** Backend completed up to **Step 20** — API registration, retrieval, and manual health checking are working.
-
 ---
 
 ## ✨ Features Completed
@@ -356,8 +354,6 @@ spring.datasource.password=YOUR_MYSQL_PASSWORD
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
-
-> ⚠️ **Security:** Never commit your real MySQL password, API keys, or other secrets to GitHub.
 
 ---
 

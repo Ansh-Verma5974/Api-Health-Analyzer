@@ -31,6 +31,7 @@ The application provides REST APIs for API management and health checking, store
 | API registration | ✅ |
 | Retrieve all APIs | ✅ |
 | Find API by ID | ✅ |
+| Delete API | ✅ |
 | Manual health check | ✅ |
 | HTTP status detection | ✅ |
 | Response-time measurement | ✅ |
@@ -41,6 +42,7 @@ The application provides REST APIs for API management and health checking, store
 | Health analysis | ✅ |
 | Response-time analysis | ✅ |
 | Automated health checks | ✅ |
+| Automatic old health-check cleanup (30 days) | ✅ |
 | Request validation | ✅ |
 | Custom exception handling | ✅ |
 | Global exception handling | ✅ |
@@ -318,7 +320,19 @@ http://localhost:8080/api/monitors/{id}
 
 ---
 
-## 4️⃣ Check API Health
+## 4️⃣ Delete an API
+
+**DELETE**
+
+```http
+http://localhost:8080/api/monitors/{id}
+```
+
+Deletes the selected API and its associated health-check records.
+
+---
+
+## 5️⃣ Check API Health
 
 **GET**
 
@@ -330,7 +344,7 @@ The application contacts the registered API and measures its HTTP response and r
 
 ---
 
-## 5️⃣ Health-Check History
+## 6️⃣ Health-Check History
 
 **GET**
 
@@ -342,7 +356,7 @@ Returns previously recorded health-check results for the selected API.
 
 ---
 
-## 6️⃣ Recent Health Checks
+## 7️⃣ Recent Health Checks
 
 **GET**
 
@@ -354,7 +368,7 @@ Returns the most recent health-check records.
 
 ---
 
-## 7️⃣ Uptime Analysis
+## 8️⃣ Uptime Analysis
 
 **GET**
 
@@ -366,7 +380,7 @@ Returns the calculated uptime percentage based on recorded health checks.
 
 ---
 
-## 8️⃣ Complete Health Analysis
+## 9️⃣ Complete Health Analysis
 
 **GET**
 
@@ -375,6 +389,31 @@ http://localhost:8080/api/monitors/{id}/analysis
 ```
 
 Returns the calculated health and performance analysis for the selected API.
+
+---
+
+# 🧹 Database Cleanup
+
+The backend includes automatic cleanup of old health-check history to prevent the database from growing indefinitely.
+
+### Automatic Health-Check Cleanup
+
+- 🗓️ Runs automatically through `AutomateScheduler`
+- 🧹 Deletes health-check records older than **30 days**
+- 🔒 Uses a transactional cleanup operation for safe database deletion
+- 💾 Keeps recent health-check history available for analysis
+
+The cleanup is handled by the repository method:
+
+```java
+healthCheckRepository.deleteOlderThan(cutoff);
+```
+
+where the cutoff is calculated using:
+
+```java
+LocalDateTime cutoff = LocalDateTime.now().minusDays(30);
+```
 
 ---
 
@@ -445,6 +484,7 @@ The REST API has been tested using Postman.
 
 ```text
 POST  /api/monitors
+DELETE /api/monitors/{id}
 GET   /api/monitors
 GET   /api/monitors/{id}
 GET   /api/monitors/{id}/check
@@ -541,10 +581,12 @@ GET All APIs               █████████████████�
 GET API by ID              ████████████████████ ✅
 Manual Health Check        ████████████████████ ✅
 Health-Check Storage       ████████████████████ ✅
+Delete API                 ████████████████████ ✅
 Health History             ████████████████████ ✅
 Uptime Analysis            ████████████████████ ✅
 Health Analysis            ████████████████████ ✅
 Automated Health Checks    ████████████████████ ✅
+Automatic Data Cleanup     ████████████████████ ✅
 Validation                 ████████████████████ ✅
 Exception Handling         ████████████████████ ✅
 Postman Testing            ████████████████████ ✅
@@ -610,6 +652,7 @@ This project provides practical experience with:
 - HTTP requests and status codes
 - API health monitoring
 - Automated scheduling
+- Database cleanup and data-retention management
 - Health and performance analysis
 - Request validation
 - Exception handling

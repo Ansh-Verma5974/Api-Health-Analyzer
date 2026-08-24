@@ -28,6 +28,13 @@ public class ApihpController {
     public Apihp addApi(@Valid @RequestBody Apihp apihp) {
         return apihpService.saveApi(apihp);
     }
+    @DeleteMapping("/{id}")
+    public String deleteApi(@PathVariable Long id) {
+
+        apihpService.deleteApi(id);
+
+        return "API deleted successfully";
+    }
     @GetMapping
     public List<Apihp> getAllApis() {
         return apihpService.getAllApis();

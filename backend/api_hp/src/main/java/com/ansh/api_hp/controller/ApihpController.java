@@ -1,9 +1,11 @@
 package com.ansh.api_hp.controller;
 
 import com.ansh.api_hp.entity.Apihp;
+import com.ansh.api_hp.entity.HealthAnalysis;
 import com.ansh.api_hp.entity.HealthCheck;
 import com.ansh.api_hp.service.ApihpService;
 import com.ansh.api_hp.service.HpChckrService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +25,17 @@ public class ApihpController {
     }
 
     @PostMapping
-    public Apihp addApi(@RequestBody Apihp apihp) {
+    public Apihp addApi(@Valid @RequestBody Apihp apihp) {
         return apihpService.saveApi(apihp);
     }
-
+    @GetMapping
+    public List<Apihp> getAllApis() {
+        return apihpService.getAllApis();
+    }
+    @GetMapping("/{id}")
+    public Apihp getApiById(@PathVariable Long id) {
+        return apihpService.getApiById(id);
+    }
     @GetMapping("/{id}/check")
     public HealthCheck checkApi(@PathVariable Long id) {
 
@@ -45,5 +54,15 @@ public class ApihpController {
     public double getUptime(@PathVariable Long id) {
 
         return hpChckrService.calculateUptime(id);
+    }
+    @GetMapping("/{id}/analysis")
+    public HealthAnalysis getAnalysis(@PathVariable Long id) {
+
+        return hpChckrService.getHealthAnalysis(id);
+    }
+    @GetMapping("/{id}/recent")
+    public List<HealthCheck> getRecentChecks(@PathVariable Long id) {
+
+        return hpChckrService.getRecentChecks(id);
     }
 }

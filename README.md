@@ -16,9 +16,9 @@
 
 ## 📌 About the Project
 
-**Api-Health-Analyzer** is a backend application designed to register APIs and analyze their availability by sending HTTP requests and measuring their response time.
+**Api-Health-Analyzer** is a Java Spring Boot backend application designed to register APIs, monitor their availability, measure response performance, store health-check history, and generate health-analysis statistics.
 
-The current version provides a foundation for a full API monitoring platform. APIs can be registered through REST endpoints, stored in MySQL, retrieved when required, and manually health-checked.
+The application provides REST APIs for API management and health checking, stores data using MySQL, performs automated health checks through a scheduler, and analyzes collected results to determine API availability and performance.
 
 ---
 
@@ -34,7 +34,16 @@ The current version provides a foundation for a full API monitoring platform. AP
 | Manual health check | ✅ |
 | HTTP status detection | ✅ |
 | Response-time measurement | ✅ |
-| API DOWN/error handling | ✅ |
+| API UP/DOWN detection | ✅ |
+| Health-check history | ✅ |
+| Recent health checks | ✅ |
+| Uptime calculation | ✅ |
+| Health analysis | ✅ |
+| Response-time analysis | ✅ |
+| Automated health checks | ✅ |
+| Request validation | ✅ |
+| Custom exception handling | ✅ |
+| Global exception handling | ✅ |
 | Postman testing | ✅ |
 
 ---
@@ -42,39 +51,53 @@ The current version provides a foundation for a full API monitoring platform. AP
 ## 🧠 How It Works
 
 ```text
-              👤 Client / Postman
-                      │
-                      ▼
-             ┌──────────────────┐
-             │ ApihpController  │
-             └────────┬─────────┘
-                      │
-                      ▼
-             ┌──────────────────┐
-             │   ApihpService   │
-             └────────┬─────────┘
-                      │
-                      ▼
-             ┌──────────────────┐
-             │ ApihpRepository  │
-             └────────┬─────────┘
-                      │
-                      ▼
-             ┌──────────────────┐
-             │   MySQL / apihp  │
-             └──────────────────┘
+                    👤 Client / Postman
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ ApihpController  │
+                 └────────┬─────────┘
+                          │
+                          ▼
+                 ┌──────────────────┐
+                 │   ApihpService   │
+                 └───────┬──────────┘
+                         │
+              ┌──────────┴──────────┐
+              ▼                     ▼
+     ┌──────────────────┐   ┌──────────────────┐
+     │ Apihprepository  │   │ HpChckrService   │
+     └────────┬─────────┘   └────────┬─────────┘
+              │                      │
+              ▼                      ▼
+       ┌─────────────┐       ┌────────────────┐
+       │ MySQL /     │       │  HealthCheck   │
+       │   apihp     │       └───────┬────────┘
+       └─────────────┘               │
+                                     ▼
+                            ┌──────────────────┐
+                            │ HealthAnalysis   │
+                            └──────────────────┘
+
+                     ▲
+                     │
+             ┌───────┴────────┐
+             │AutomateScheduler│
+             └────────────────┘
 ```
 
-### 🔎 Health Check Flow
+---
+
+### 🔎 Manual Health Check Flow
 
 ```text
-      Stored API URL
+       Stored API URL
              │
              ▼
-     HealthCheckService
+      HpChckrService
              │
              ▼
-      Send HTTP GET
+       Send HTTP Request
              │
         ┌────┴────┐
         ▼         ▼
@@ -82,9 +105,79 @@ The current version provides a foundation for a full API monitoring platform. AP
         │         │
         ▼         ▼
    🟢 API UP   🔴 API DOWN
-        │
-        ▼
- HTTP Status + Response Time
+        │         │
+        └────┬────┘
+             ▼
+     HTTP Status +
+     Response Time
+             │
+             ▼
+        HealthCheck
+```
+
+---
+
+### 🤖 Automated Health Check Flow
+
+```text
+       Registered APIs
+              │
+              ▼
+      AutomateScheduler
+              │
+              ▼
+        HpChckrService
+              │
+              ▼
+       HTTP Health Check
+              │
+       ┌──────┴──────┐
+       ▼             ▼
+   Successful      Failed
+       │             │
+       └──────┬──────┘
+              ▼
+        HealthCheck
+              │
+              ▼
+        MySQL Storage
+              │
+              ▼
+       Health Analysis
+```
+
+---
+
+## 📊 Health Analysis
+
+The application analyzes stored health-check results to provide a consolidated view of API health and performance.
+
+### Analysis Data
+
+```text
+apiId
+totalChecks
+successfulChecks
+failedChecks
+uptimePercentage
+averageResponseTime
+fastestResponse
+```
+
+Additional health-analysis information is used to understand recent API behavior, response-time trends, failures, and alert conditions.
+
+### Example
+
+```json
+{
+  "apiId": 1,
+  "totalChecks": 20,
+  "successfulChecks": 18,
+  "failedChecks": 2,
+  "uptimePercentage": 90.0,
+  "averageResponseTime": 245.5,
+  "fastestResponse": 120
+}
 ```
 
 ---
@@ -100,7 +193,7 @@ The current version provides a foundation for a full API monitoring platform. AP
 | 🔗 Spring Data JPA | Database access |
 | ⚙️ Hibernate | ORM |
 | 🧪 Postman | API testing |
-| 📦 Maven | Dependency/build management |
+| 📦 Maven | Dependency management |
 | 💻 IntelliJ IDEA | Development environment |
 
 ---
@@ -118,26 +211,33 @@ Api-Health-Analyzer/
         ├── 📄 pom.xml
         │
         └── 📂 src/
-            └── 📂 main/
+            ├── 📂 main/
                 │
                 ├── 📂 java/
-                │   └── 📂 com.ansh.api_hp/
+                │   └── 📂 com/ansh/api_hp/
                 │       │
                 │       ├── 📄 ApiHpApplication.java
                 │       │
                 │       ├── 📂 controller/
-                │       │   ├── 📄 ApihpController.java
-                │       │   └── 📄 TestController.java
+                │       │   └── 📄 ApihpController.java
                 │       │
                 │       ├── 📂 entity/
-                │       │   └── 📄 Apihp.java
+                │       │   ├── 📄 Apihp.java
+                │       │   ├── 📄 HealthCheck.java
+                │       │   └── 📄 HealthAnalysis.java
                 │       │
                 │       ├── 📂 repository/
-                │       │   └── 📄 ApihpRepository.java
+                │       │   ├── 📄 Apihprepository.java
+                │       │   └── 📄 HealthCheckRepository.java
                 │       │
-                │       └── 📂 service/
-                │           ├── 📄 ApihpService.java
-                │           └── 📄 HealthCheckService.java
+                │       ├── 📂 service/
+                │       │   ├── 📄 ApihpService.java
+                │       │   ├── 📄 HpChckrService.java
+                │       │   └── 📄 AutomateScheduler.java
+                │       │
+                │       └── 📂 exception/
+                │           ├── 📄 ApiNotFoundException.java
+                │           └── 📄 GlobalExceptionHandler.java
                 │
                 └── 📂 resources/
                     └── 📄 application.properties
@@ -147,19 +247,13 @@ Api-Health-Analyzer/
 
 ## 🗄️ Database Design
 
-The current project uses a MySQL database named:
+The project uses a MySQL database named:
 
 ```text
 apihp
 ```
 
-The main table is:
-
-```text
-apihp
-```
-
-### Current Entity
+### 📌 API Entity
 
 ```text
 ┌───────────────┬─────────────────────────────┐
@@ -171,6 +265,14 @@ apihp
 │ active        │ API active/inactive status  │
 └───────────────┴─────────────────────────────┘
 ```
+
+### 📌 HealthCheck Entity
+
+Stores individual API health-check results, including API status, HTTP response information, response time, and check timestamp.
+
+### 📌 HealthAnalysis Entity
+
+Stores/calculates aggregated health and performance information from health-check results.
 
 ---
 
@@ -194,17 +296,6 @@ http://localhost:8080/api/monitors
 }
 ```
 
-### Example Response
-
-```json
-{
-  "id": 1,
-  "name": "GitHub",
-  "url": "https://api.github.com",
-  "active": true
-}
-```
-
 ---
 
 ## 2️⃣ Get All Registered APIs
@@ -215,22 +306,19 @@ http://localhost:8080/api/monitors
 http://localhost:8080/api/monitors
 ```
 
-### Example Response
+---
 
-```json
-[
-  {
-    "id": 1,
-    "name": "GitHub",
-    "url": "https://api.github.com",
-    "active": true
-  }
-]
+## 3️⃣ Get API by ID
+
+**GET**
+
+```http
+http://localhost:8080/api/monitors/{id}
 ```
 
 ---
 
-## 3️⃣ Check API Health
+## 4️⃣ Check API Health
 
 **GET**
 
@@ -238,67 +326,140 @@ http://localhost:8080/api/monitors
 http://localhost:8080/api/monitors/{id}/check
 ```
 
-### Example
+The application contacts the registered API and measures its HTTP response and response time.
+
+---
+
+## 5️⃣ Health-Check History
+
+**GET**
 
 ```http
-http://localhost:8080/api/monitors/1/check
+http://localhost:8080/api/monitors/{id}/history
 ```
 
-### Successful Response
+Returns previously recorded health-check results for the selected API.
+
+---
+
+## 6️⃣ Recent Health Checks
+
+**GET**
+
+```http
+http://localhost:8080/api/monitors/{id}/recent
+```
+
+Returns the most recent health-check records.
+
+---
+
+## 7️⃣ Uptime Analysis
+
+**GET**
+
+```http
+http://localhost:8080/api/monitors/{id}/uptime
+```
+
+Returns the calculated uptime percentage based on recorded health checks.
+
+---
+
+## 8️⃣ Complete Health Analysis
+
+**GET**
+
+```http
+http://localhost:8080/api/monitors/{id}/analysis
+```
+
+Returns the calculated health and performance analysis for the selected API.
+
+---
+
+# 🛡️ Validation & Exception Handling
+
+## ✅ Request Validation
+
+The project validates API information before saving it.
+
+Example:
+
+```java
+@NotBlank(message = "API name cannot be empty")
+private String name;
+
+@NotBlank(message = "API URL cannot be empty")
+@URL(message = "API URL must be valid")
+private String url;
+```
+
+The controller activates validation using:
+
+```java
+@Valid @RequestBody Apihp apihp
+```
+
+Invalid requests result in:
 
 ```text
-Status: 200, Response Time: 185 ms
+400 Bad Request
 ```
 
-This endpoint sends a request to the stored API URL and reports the HTTP status and response time.
+---
 
-If the target API cannot be reached, the service returns an API DOWN message.
+## ⚠️ Custom Exception Handling
+
+The project uses:
+
+```text
+ApiNotFoundException
+```
+
+when an API with the requested ID doesn't exist.
+
+Example:
+
+```http
+GET /api/monitors/999
+```
+
+The `GlobalExceptionHandler` returns a clean response:
+
+```json
+{
+  "status": 404,
+  "error": "API Not Found",
+  "message": "No API exists with id: 999"
+}
+```
 
 ---
 
 # 🧪 Testing With Postman
 
-The current REST endpoints have been tested using Postman.
+The REST API has been tested using Postman.
 
-### POST Test
-
-```text
-POST
-   ↓
-/api/monitors
-   ↓
-JSON request body
-   ↓
-Spring Boot
-   ↓
-MySQL
-```
-
-### GET Test
+### Tested Operations
 
 ```text
-GET
-   ↓
-/api/monitors
-   ↓
-Spring Boot
-   ↓
-Stored API records
+POST  /api/monitors
+GET   /api/monitors
+GET   /api/monitors/{id}
+GET   /api/monitors/{id}/check
+GET   /api/monitors/{id}/history
+GET   /api/monitors/{id}/recent
+GET   /api/monitors/{id}/uptime
+GET   /api/monitors/{id}/analysis
 ```
 
-### Health Check Test
+Also tested:
 
-```text
-GET
-   ↓
-/api/monitors/1/check
-   ↓
-HealthCheckService
-   ↓
-External API
-   ↓
-HTTP Status + Response Time
-```
+- ✅ Request validation
+- ✅ Invalid API ID handling
+- ✅ Database persistence
+- ✅ Automated health checking
 
 ---
 
@@ -308,13 +469,8 @@ HTTP Status + Response Time
 
 ```bash
 git clone <your-github-repository-url>
-```
-
-```bash
 cd Api-Health-Analyzer
 ```
-
----
 
 ## 2. Open the Backend
 
@@ -324,17 +480,11 @@ Open the following project in IntelliJ IDEA:
 backend/api_hp
 ```
 
----
-
 ## 3. Create the MySQL Database
-
-Run:
 
 ```sql
 CREATE DATABASE apihp;
 ```
-
----
 
 ## 4. Configure MySQL
 
@@ -355,7 +505,7 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
----
+> ⚠️ Never commit your real database password or other sensitive credentials to GitHub.
 
 ## 5. Run the Application
 
@@ -365,23 +515,15 @@ Run:
 ApiHpApplication.java
 ```
 
-The backend runs at:
+The backend will be available at:
 
 ```text
 http://localhost:8080
 ```
 
----
-
 ## 6. Test With Postman
 
-Use Postman to test:
-
-```text
-POST  /api/monitors
-GET   /api/monitors
-GET   /api/monitors/{id}/check
-```
+Use the REST endpoints listed above to test the application.
 
 ---
 
@@ -390,17 +532,23 @@ GET   /api/monitors/{id}/check
 ```text
 Spring Boot Setup          ████████████████████ ✅
 MySQL Integration          ████████████████████ ✅
-Entity                     ████████████████████ ✅
-Repository                 ████████████████████ ✅
-Service                    ████████████████████ ✅
-Controller                 ████████████████████ ✅
+Entity Layer               ████████████████████ ✅
+Repository Layer           ████████████████████ ✅
+Service Layer              ████████████████████ ✅
+Controller Layer           ████████████████████ ✅
 POST API                   ████████████████████ ✅
-GET API                    ████████████████████ ✅
+GET All APIs               ████████████████████ ✅
+GET API by ID              ████████████████████ ✅
 Manual Health Check        ████████████████████ ✅
+Health-Check Storage       ████████████████████ ✅
+Health History             ████████████████████ ✅
+Uptime Analysis            ████████████████████ ✅
+Health Analysis            ████████████████████ ✅
+Automated Health Checks    ████████████████████ ✅
+Validation                 ████████████████████ ✅
+Exception Handling         ████████████████████ ✅
+Postman Testing            ████████████████████ ✅
 
-Automatic Monitoring       ░░░░░░░░░░░░░░░░░░░░ ⏳
-Health History             ░░░░░░░░░░░░░░░░░░░░ ⏳
-Uptime Analytics           ░░░░░░░░░░░░░░░░░░░░ ⏳
 Frontend Dashboard         ░░░░░░░░░░░░░░░░░░░░ ⏳
 Charts & Visualization     ░░░░░░░░░░░░░░░░░░░░ ⏳
 Cloud Deployment           ░░░░░░░░░░░░░░░░░░░░ ⏳
@@ -410,34 +558,40 @@ Cloud Deployment           ░░░░░░░░░░░░░░░░░�
 
 # 🚀 Future Roadmap
 
-The project will evolve from a simple API checker into a complete monitoring platform.
-
 ### Phase 1 — Monitoring Engine
-- ⏱️ Automatic scheduled health checks
-- 📝 Store every health-check result
-- 🔴🟢 Track API UP/DOWN status
-- ⚠️ Timeout and error handling
+
+- ⏱️ Automated scheduled health checks
+- 📝 Store health-check results
+- 🟢🔴 Track API UP/DOWN status
+- ⚠️ Failure and error handling
+- 📜 Health-check history
 
 ### Phase 2 — Analytics
+
 - 📈 Response-time history
 - 📊 Uptime percentage
-- 🕐 Last checked timestamp
-- 📉 Health trends
-- 🔎 Monitoring history
+- 🕐 Last checked information
+- 📉 Response-time trends
+- 🔎 Historical health analysis
+- 🚨 Health alerts
 
 ### Phase 3 — Frontend
+
 - ⚛️ React dashboard
 - 🟢 Live API status cards
 - 📊 Response-time charts
 - 📈 Uptime graphs
 - 🔍 Search and filtering
+- 📋 API management interface
 
 ### Phase 4 — Production
+
 - 🐳 Docker containerization
 - ☁️ Cloud deployment
 - 🔐 Environment-based configuration
 - 🔔 Failure notifications
 - 📋 API documentation
+- 🔒 Authentication and authorization
 
 ---
 
@@ -454,9 +608,12 @@ This project provides practical experience with:
 - Hibernate ORM
 - MySQL database integration
 - HTTP requests and status codes
-- API health monitoring concepts
-- Postman API testing
+- API health monitoring
+- Automated scheduling
+- Health and performance analysis
+- Request validation
 - Exception handling
+- Postman API testing
 - Maven
 - Git and GitHub
 

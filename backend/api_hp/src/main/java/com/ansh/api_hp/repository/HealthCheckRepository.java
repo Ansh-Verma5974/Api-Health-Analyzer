@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface HealthCheckRepository extends JpaRepository<HealthCheck, Long> {
 
-    List<HealthCheck> findByApiId(Long apiId);
+    List<HealthCheck> findByApiIdOrderByCheckedAtAsc(Long apiId);
+
+    List<HealthCheck> findTop10ByApiIdOrderByCheckedAtDesc(Long apiId);
 }

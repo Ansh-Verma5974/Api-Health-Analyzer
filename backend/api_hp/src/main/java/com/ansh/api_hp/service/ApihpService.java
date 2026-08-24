@@ -1,6 +1,7 @@
 package com.ansh.api_hp.service;
 
 import com.ansh.api_hp.entity.Apihp;
+import com.ansh.api_hp.exception.ApiNotFoundException;
 import com.ansh.api_hp.repository.ApihpRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,6 @@ public class ApihpService {
     public Apihp getApiById(Long id) {
         return apihpRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("API not found"));
+                        new ApiNotFoundException(id));
     }
 }

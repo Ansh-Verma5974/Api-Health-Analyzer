@@ -649,8 +649,7 @@ This project provides practical experience with:
 - Exception handling
 - Postman API testing
 - Maven
-- Git and GitHub
-
+  
 ---
 
 # 👨‍💻 Author

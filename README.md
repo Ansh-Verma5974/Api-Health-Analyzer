@@ -213,7 +213,7 @@ Api-Health-Analyzer/
         ├── 📄 pom.xml
         │
         └── 📂 src/
-            ├── 📂 main/
+             └──📂 main/
                 │
                 ├── 📂 java/
                 │   └── 📂 com/ansh/api_hp/
@@ -626,15 +626,6 @@ Cloud Deployment           ░░░░░░░░░░░░░░░░░�
 - 🔍 Search and filtering
 - 📋 API management interface
 
-### Phase 4 — Production
-
-- 🐳 Docker containerization
-- ☁️ Cloud deployment
-- 🔐 Environment-based configuration
-- 🔔 Failure notifications
-- 📋 API documentation
-- 🔒 Authentication and authorization
-
 ---
 
 # 🎓 Learning Outcomes
@@ -658,8 +649,7 @@ This project provides practical experience with:
 - Exception handling
 - Postman API testing
 - Maven
-- Git and GitHub
-
+  
 ---
 
 # 👨‍💻 Author

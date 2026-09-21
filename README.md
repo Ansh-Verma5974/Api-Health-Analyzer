@@ -1,42 +1,25 @@
 # 🚀 API Health Analyzer
-
-```{=html}
 <p align="center">
-```
-`<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=168CFF&center=true&vCenter=true&width=700&lines=Monitor+APIs+%7C+Analyze+Health+%7C+Track+Performance;Java+Spring+Boot+%2B+React+%2B+MySQL;Full-Stack+API+Monitoring+Dashboard" alt="Typing animation">`{=html}
-```{=html}
-</p>
-```
-```{=html}
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=168CFF&center=true&vCenter=true&width=700&lines=Monitor+APIs+%7C+Analyze+Health+%7C+Track+Performance;Java+Spring+Boot+%2B+React+%2B+MySQL;Full-Stack+API+Monitoring+Dashboard" alt="Typing animation">
 <p align="center">
-```
-`<strong>`{=html}A full-stack API monitoring and health-analysis
+<strong>A full-stack API monitoring and health-analysis
 platform built with Java Spring Boot, React, and
-MySQL.`</strong>`{=html}
-```{=html}
+MySQL.</strong>
 </p>
-```
-```{=html}
 <p align="center">
-```
-`<img src="https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk" alt="Java 25">`{=html}
-`<img src="https://img.shields.io/badge/Spring%20Boot-4.1.1-brightgreen?style=for-the-badge&logo=springboot" alt="Spring Boot">`{=html}
-`<img src="https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">`{=html}
-`<img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">`{=html}
-`<img src="https://img.shields.io/badge/Recharts-Analytics-FF6384?style=for-the-badge" alt="Recharts">`{=html}
-`<img src="https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven">`{=html}
-```{=html}
+<img src="https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk" alt="Java 25">
+<img src="https://img.shields.io/badge/Spring%20Boot-4.1.1-brightgreen?style=for-the-badge&logo=springboot" alt="Spring Boot">
+<img src="https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+<img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+<img src="https://img.shields.io/badge/Recharts-Analytics-FF6384?style=for-the-badge" alt="Recharts">
+<img src="https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven">
 </p>
-```
-```{=html}
 <p align="center">
-```
-`<a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">`{=html}
-`<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">`{=html}
-`</a>`{=html}
-```{=html}
+<a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">
+<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
+</a>
+
 </p>
-```
 
 ------------------------------------------------------------------------
 
@@ -72,7 +55,7 @@ layer**, and **React/Vite frontend** into a single monitoring workflow.
 # ✨ Features
 
 ## 🖥️ Frontend
-
+``` text
   Feature                              Status
   ----------------------------------- --------
   React + Vite dashboard                 ✅
@@ -99,9 +82,9 @@ layer**, and **React/Vite frontend** into a single monitoring workflow.
   Configurable API auto-scroll           ✅
   LocalStorage settings persistence      ✅
   Responsive UI styling                  ✅
-
+```
 ## ⚙️ Backend
-
+``` text
   Feature                         Status
   ------------------------------ --------
   Spring Boot REST backend          ✅
@@ -126,7 +109,7 @@ layer**, and **React/Vite frontend** into a single monitoring workflow.
   Custom exception handling         ✅
   Global exception handling         ✅
   Postman testing                   ✅
-
+```
 ------------------------------------------------------------------------
 
 # 🧩 Technology Stack
@@ -162,8 +145,7 @@ layer**, and **React/Vite frontend** into a single monitoring workflow.
 -   🟢 Node.js / npm
 
 ------------------------------------------------------------------------
-
-# 🏗️ Application Architecture
+ 🏗️ Application Architecture
 
 ``` text
                          ┌─────────────────────────┐
@@ -488,11 +470,9 @@ data.
 
 # 🌐 REST API
 
-Base URL:
+Base URL: http://localhost:8080/api/monitors
 
 ``` text
-http://localhost:8080/api/monitors
-```
 
   Method     Endpoint                        Purpose
   ---------- ------------------------------- ----------------------
@@ -505,7 +485,7 @@ http://localhost:8080/api/monitors
   `GET`      `/api/monitors/{id}/recent`     Get recent checks
   `GET`      `/api/monitors/{id}/uptime`     Calculate uptime
   `GET`      `/api/monitors/{id}/analysis`   Get health analysis
-
+```
 ------------------------------------------------------------------------
 
 # 🛡️ Validation & Exception Handling
@@ -690,7 +670,7 @@ ApiHpApplication.java
 Backend:
 
 ``` text
-http://localhost:8080
+http://localhost:8081
 ```
 
 ------------------------------------------------------------------------
@@ -835,43 +815,28 @@ Potential future improvements:
 
 # 👨‍💻 Author
 
-```{=html}
+
 <p align="center">
-```
-`<strong>`{=html}Ansh Verma`</strong>`{=html}`<br>`{=html} B.Tech ---
+<strong> Ansh Verma </strong> <br> 
+ B.Tech --
 Computer Science & Engineering
-```{=html}
 </p>
-```
-```{=html}
+
 <p align="center">
-```
-`<a href="https://github.com/Ansh-Verma5974">`{=html}
-`<img src="https://img.shields.io/badge/GitHub-Ansh--Verma5974-181717?style=for-the-badge&logo=github" alt="GitHub">`{=html}
-`</a>`{=html}
-```{=html}
+<a href="https://github.com/Ansh-Verma5974">
+<img src="https://img.shields.io/badge/GitHub-Ansh--Verma5974-181717?style=for-the-badge&logo=github" alt="GitHub"></a>
 </p>
-```
 
 ------------------------------------------------------------------------
 
 # ⭐ Project Repository
+<p align="center">
+<a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">
+<img src="https://img.shields.io/badge/View%20Project%20on%20GitHub-→-168CFF?style=for-the-badge&logo=github" alt="View Project">
+</a>
+</p>
 
-```{=html}
 <p align="center">
-```
-`<a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">`{=html}
-`<img src="https://img.shields.io/badge/View%20Project%20on%20GitHub-→-168CFF?style=for-the-badge&logo=github" alt="View Project">`{=html}
-`</a>`{=html}
-```{=html}
+<strong>🚀 Monitor. Analyze.Improve.</strong>
+<br><em>Built as a Java full-stack project for learning and practical development.</em>
 </p>
-```
-```{=html}
-<p align="center">
-```
-`<strong>`{=html}🚀 Monitor. Analyze.
-Improve.`</strong>`{=html}`<br>`{=html} `<em>`{=html}Built as a Java
-full-stack project for learning and practical development.`</em>`{=html}
-```{=html}
-</p>
-```

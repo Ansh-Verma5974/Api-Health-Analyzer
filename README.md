@@ -655,8 +655,6 @@ spring.datasource.password=YOUR_PASSWORD
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-> ⚠️ Do not commit real passwords or credentials to GitHub.
-
 ------------------------------------------------------------------------
 
 ## 3️⃣ Start Backend

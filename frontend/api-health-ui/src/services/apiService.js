@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8081";
+const API_BASE_URL = "https://api-health-analyzer.onrender.com";
 
 export async function getApis() {
     const response = await fetch(`${API_BASE_URL}/api/monitors`);

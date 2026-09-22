@@ -670,7 +670,7 @@
 }
 
 .api-table-scroll .api-table {
-  animation: apiAutoScroll 12s linear infinite;
+  animation: apiAutoScroll 40s linear infinite;
   will-change: transform;
 }
 

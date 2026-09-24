@@ -1,11 +1,13 @@
 # 🚀 API Health Analyzer
+
 <p align="center">
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=168CFF&center=true&vCenter=true&width=700&lines=Monitor+APIs+%7C+Analyze+Health+%7C+Track+Performance;Java+Spring+Boot+%2B+React+%2B+MySQL;Full-Stack+API+Monitoring+Dashboard" alt="Typing animation">
-<p align="center">
-<strong>A full-stack API monitoring and health-analysis
-platform built with Java Spring Boot, React, and
-MySQL.</strong>
 </p>
+
+<p align="center">
+<strong>A full-stack API monitoring and health-analysis platform built with Java Spring Boot, React, and MySQL.</strong>
+</p>
+
 <p align="center">
 <img src="https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk" alt="Java 25">
 <img src="https://img.shields.io/badge/Spring%20Boot-4.1.1-brightgreen?style=for-the-badge&logo=springboot" alt="Spring Boot">
@@ -14,174 +16,233 @@ MySQL.</strong>
 <img src="https://img.shields.io/badge/Recharts-Analytics-FF6384?style=for-the-badge" alt="Recharts">
 <img src="https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven">
 </p>
+
 <p align="center">
+<a href="https://api-health-analyzer.vercel.app/">
+<img src="https://img.shields.io/badge/Live%20Demo-Open%20Website-168CFF?style=for-the-badge" alt="Live Demo">
+</a>
 <a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">
 <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
 </a>
-
 </p>
 
-------------------------------------------------------------------------
+---
 
-## 🌐 What is API Health Analyzer?
+## 🌐 Live Deployment
 
-**API Health Analyzer** is a full-stack web application that monitors
-registered API endpoints, performs health checks, measures response
-time, stores historical results, calculates uptime, and provides
-performance analytics through an interactive React dashboard.
+### 🚀 Frontend
 
-The project combines a **Spring Boot REST backend**, **MySQL persistence
-layer**, and **React/Vite frontend** into a single monitoring workflow.
+**Live Website:**  
+https://api-health-analyzer.vercel.app/
 
-``` text
-                         API HEALTH ANALYZER
-                                │
-              ┌─────────────────┴─────────────────┐
-              │                                   │
-        🖥️ React Frontend                  ⚙️ Spring Boot Backend
-              │                                   │
-              │                         ┌─────────┴─────────┐
-              │                         │                   │
-              │                    Health Checks       Analytics
-              │                         │                   │
-              └─────────────── REST API / JSON ─────────────┘
-                                        │
-                                        ▼
-                                  🗄️ MySQL
+### ⚙️ Backend
+
+**Live REST API:**  
+https://api-health-analyzer.onrender.com/api/monitors
+
+### ☁️ Deployment Architecture
+
+```text
+                         USER
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │       Vercel        │
+                │   React + Vite UI   │
+                └──────────┬──────────┘
+                           │
+                           │ HTTPS / REST API
+                           ▼
+                ┌─────────────────────┐
+                │       Render        │
+                │  Spring Boot API    │
+                └──────────┬──────────┘
+                           │
+                           │ JPA / Hibernate
+                           ▼
+                ┌─────────────────────┐
+                │    Aiven MySQL      │
+                │    Persistent DB    │
+                └─────────────────────┘
 ```
 
-------------------------------------------------------------------------
+> **Deployment note:** The backend uses Render's Free tier. After a period of inactivity, the service may spin down and the first request after inactivity can take longer while the backend starts again.
+
+---
+
+# 🌐 What is API Health Analyzer?
+
+**API Health Analyzer** is a full-stack web application that monitors registered API endpoints, performs health checks, measures response time, stores historical results, calculates uptime, and provides performance analytics through an interactive React dashboard.
+
+The project combines a **Spring Boot REST backend**, **MySQL persistence layer**, and **React/Vite frontend** into a complete monitoring workflow.
+
+```text
+                         API HEALTH ANALYZER
+                                  │
+              ┌───────────────────┴───────────────────┐
+              │                                       │
+       🖥️ React Frontend                       ⚙️ Spring Boot Backend
+              │                                       │
+              │                              ┌────────┴────────┐
+              │                              │                 │
+              │                        Health Checks      Analytics
+              │                              │                 │
+              └────────────── REST API / JSON ───────────────┘
+                                             │
+                                             ▼
+                                      🗄️ Aiven MySQL
+```
+
+---
 
 # ✨ Features
 
 ## 🖥️ Frontend
-``` text
-  Feature                              Status
-  ----------------------------------- --------
-  React + Vite dashboard                 ✅
-  React Router navigation                ✅
-  Dashboard statistics                   ✅
-  Live API health status                 ✅
-  Uptime visualization                   ✅
-  API management page                    ✅
-  Add API                                ✅
-  Delete API                             ✅
-  API search                             ✅
-  API details page                       ✅
-  Analytics dashboard                    ✅
-  Recharts visualizations                ✅
-  History page                           ✅
-  History filtering                      ✅
-  History search                         ✅
-  Load More history                      ✅
-  Settings page                          ✅
-  Light / Dark theme                     ✅
-  Configurable auto-refresh              ✅
-  Configurable refresh interval          ✅
-  Configurable delete confirmation       ✅
-  Configurable API auto-scroll           ✅
-  LocalStorage settings persistence      ✅
-  Responsive UI styling                  ✅
-```
+
+| Feature | Status |
+|---|---|
+| React + Vite dashboard | ✅ |
+| React Router navigation | ✅ |
+| Dashboard statistics | ✅ |
+| Live API health status | ✅ |
+| Uptime visualization | ✅ |
+| API management page | ✅ |
+| Add API | ✅ |
+| Delete API | ✅ |
+| API search | ✅ |
+| API details page | ✅ |
+| Analytics dashboard | ✅ |
+| Recharts visualizations | ✅ |
+| History page | ✅ |
+| History filtering | ✅ |
+| History search | ✅ |
+| Load More history | ✅ |
+| Settings page | ✅ |
+| Light / Dark theme | ✅ |
+| Configurable auto-refresh | ✅ |
+| Configurable refresh interval | ✅ |
+| Configurable delete confirmation | ✅ |
+| Configurable API auto-scroll | ✅ |
+| LocalStorage settings persistence | ✅ |
+| Responsive UI styling | ✅ |
+
 ## ⚙️ Backend
-``` text
-  Feature                         Status
-  ------------------------------ --------
-  Spring Boot REST backend          ✅
-  MySQL integration                 ✅
-  API registration                  ✅
-  Retrieve all APIs                 ✅
-  Retrieve API by ID                ✅
-  Delete API                        ✅
-  Manual health checks              ✅
-  HTTP status detection             ✅
-  Response-time measurement         ✅
-  UP / DOWN detection               ✅
-  Health-check history              ✅
-  Recent health checks              ✅
-  Uptime calculation                ✅
-  Health analysis                   ✅
-  Response-time trend analysis      ✅
-  Consecutive failure tracking      ✅
-  Automated health checks           ✅
-  Scheduled old-record cleanup      ✅
-  Request validation                ✅
-  Custom exception handling         ✅
-  Global exception handling         ✅
-  Postman testing                   ✅
-```
-------------------------------------------------------------------------
+
+| Feature | Status |
+|---|---|
+| Spring Boot REST backend | ✅ |
+| MySQL integration | ✅ |
+| API registration | ✅ |
+| Retrieve all APIs | ✅ |
+| Retrieve API by ID | ✅ |
+| Delete API | ✅ |
+| Manual health checks | ✅ |
+| HTTP status detection | ✅ |
+| Response-time measurement | ✅ |
+| UP / DOWN detection | ✅ |
+| Health-check history | ✅ |
+| Recent health checks | ✅ |
+| Uptime calculation | ✅ |
+| Health analysis | ✅ |
+| Response-time trend analysis | ✅ |
+| Consecutive failure tracking | ✅ |
+| Automated health checks | ✅ |
+| Scheduled old-record cleanup | ✅ |
+| Request validation | ✅ |
+| Custom exception handling | ✅ |
+| Global exception handling | ✅ |
+| Postman testing | ✅ |
+
+---
 
 # 🧩 Technology Stack
 
 ### Backend
 
--   ☕ **Java 25**
--   🌱 **Spring Boot 4.1.1**
--   🌐 **Spring Web**
--   🔗 **Spring Data JPA**
--   🧩 **Hibernate**
--   🗄️ **MySQL**
--   📦 **Maven**
--   🌍 **Java HttpClient**
--   ⏱️ **Spring Scheduler**
+- ☕ **Java 25**
+- 🌱 **Spring Boot 4.1.1**
+- 🌐 **Spring Web**
+- 🔗 **Spring Data JPA**
+- 🧩 **Hibernate**
+- 🗄️ **MySQL**
+- 📦 **Maven**
+- 🌍 **Java HttpClient**
+- ⏱️ **Spring Scheduler**
 
 ### Frontend
 
--   ⚛️ **React**
--   ⚡ **Vite**
--   🧭 **React Router**
--   📊 **Recharts**
--   🎨 **CSS**
--   🔄 **Fetch API**
--   💾 **Browser LocalStorage**
+- ⚛️ **React**
+- ⚡ **Vite**
+- 🧭 **React Router**
+- 📊 **Recharts**
+- 🎨 **CSS**
+- 🔄 **Fetch API**
+- 💾 **Browser LocalStorage**
+
+### Database & Deployment
+
+- 🗄️ **Aiven MySQL**
+- ☁️ **Render**
+- ▲ **Vercel**
 
 ### Development & Testing
 
--   💻 IntelliJ IDEA
--   🧪 Postman
--   🔧 Git
--   🐙 GitHub
--   🟢 Node.js / npm
+- 💻 IntelliJ IDEA
+- 🧪 Postman
+- 🔧 Git
+- 🐙 GitHub
+- 🟢 Node.js / npm
 
-------------------------------------------------------------------------
- 🏗️ Application Architecture
+---
 
-``` text
+# 🏗️ Production Architecture
+
+```text
                          ┌─────────────────────────┐
-                         │       React UI           │
-                         │     localhost:5173      │
+                         │       Vercel            │
+                         │   React + Vite Frontend │
                          └────────────┬────────────┘
                                       │
-                                Fetch / JSON
+                                  HTTPS / JSON
                                       │
                                       ▼
                          ┌─────────────────────────┐
-                         │    Spring Boot REST     │
-                         │     localhost:8080      │
+                         │        Render           │
+                         │  Spring Boot Backend    │
                          └────────────┬────────────┘
                                       │
-                    ┌─────────────────┼─────────────────┐
-                    │                 │                 │
-                    ▼                 ▼                 ▼
-              Controller          Services         Scheduler
-                    │                 │                 │
-                    │                 │                 │
-                    └─────────────────┼─────────────────┘
+                          Spring Data JPA / Hibernate
                                       │
                                       ▼
-                               Spring Data JPA
-                                      │
-                                      ▼
-                                ┌───────────┐
-                                │   MySQL   │
-                                └───────────┘
-                                      │
-                                      ▼
-                              Health Check Data
+                         ┌─────────────────────────┐
+                         │      Aiven MySQL        │
+                         │    Persistent Storage   │
+                         └─────────────────────────┘
 ```
 
-------------------------------------------------------------------------
+## Local Development Architecture
+
+```text
+React UI
+localhost:5173
+      │
+      │ Fetch / JSON
+      ▼
+Spring Boot REST
+localhost:8081
+      │
+      ├──────── Controller
+      ├──────── Services
+      └──────── Scheduler
+                 │
+                 ▼
+          Spring Data JPA
+                 │
+                 ▼
+              MySQL
+```
+
+---
 
 # 🔄 How Monitoring Works
 
@@ -189,7 +250,7 @@ layer**, and **React/Vite frontend** into a single monitoring workflow.
 
 The user adds:
 
-``` text
+```text
 API Name
 API URL
 Active Status
@@ -197,19 +258,19 @@ Active Status
 
 The frontend sends the data to:
 
-``` http
+```http
 POST /api/monitors
 ```
 
-The backend stores the API in MySQL.
+The backend validates and stores the API in MySQL.
 
-------------------------------------------------------------------------
+---
 
 ## 2. Perform a Health Check
 
 When an API is checked:
 
-``` text
+```text
 Registered API
       │
       ▼
@@ -219,16 +280,16 @@ HpChckrService
 Java HttpClient
       │
       ▼
-External API
+External Endpoint
       │
- ┌────┴─────┐
- ▼          ▼
-Success    Failure
- │          │
- ▼          ▼
-UP         DOWN
- │          │
- └────┬─────┘
+  ┌───┴────┐
+  ▼        ▼
+Success  Failure
+  │        │
+  ▼        ▼
+ UP       DOWN
+  │        │
+  └───┬────┘
       ▼
 HTTP Status
 Response Time
@@ -237,61 +298,58 @@ Response Time
 HealthCheck
       │
       ▼
-MySQL
+Aiven MySQL
 ```
 
 The backend records:
 
--   API ID
--   Check timestamp
--   HTTP status
--   Response time
--   `UP` / `DOWN` status
+- API ID
+- Check timestamp
+- HTTP status
+- Response time
+- `UP` / `DOWN` status
 
-------------------------------------------------------------------------
+---
 
 # 🤖 Automated Monitoring
 
-The backend contains `AutomateScheduler`, which automatically checks
-active APIs.
+The backend contains `AutomateScheduler`, which automatically checks active APIs.
 
-``` text
+```text
                  AutomateScheduler
-                         │
-                         ▼
-                  Get all APIs
-                         │
-                         ▼
-                   Active APIs?
-                    /       \
-                  Yes        No
-                   │          │
-                   ▼          └── Skip
+                        │
+                        ▼
+                   Get all APIs
+                        │
+                        ▼
+                    Active APIs?
+                    /         \
+                  Yes          No
+                   │            │
+                   ▼            └── Skip
              HpChckrService
                    │
                    ▼
-             HTTP Health Check
+            HTTP Health Check
                    │
                    ▼
              Save HealthCheck
                    │
                    ▼
-                  MySQL
+                 MySQL
 ```
 
-The current scheduled health-check job runs every **60 seconds** for
-active APIs.
+The scheduled health-check job runs every **60 seconds** for active APIs.
 
-------------------------------------------------------------------------
+---
 
 # 📊 Health Analysis
 
-The backend calculates health and performance metrics from stored
-health-check records.
+The backend calculates health and performance metrics from stored health-check records.
 
 ### Metrics
 
-``` text
+```text
 totalChecks
 successfulChecks
 failedChecks
@@ -313,11 +371,9 @@ alertMessage
 
 ### Response-Time Trend
 
-When enough historical checks are available, the application compares
-recent response-time performance with the previous set of checks to
-identify the response-time trend.
+When enough historical checks are available, the application compares recent response-time performance with the previous set of checks to identify the response-time trend.
 
-------------------------------------------------------------------------
+---
 
 # 📈 Analytics Dashboard
 
@@ -325,18 +381,17 @@ The React Analytics page uses **Recharts** to visualize monitoring data.
 
 It provides:
 
--   📈 Response-time trends
--   📊 API performance comparison
--   🐢 Slowest APIs
--   ⚡ Fastest APIs
--   🥧 Response-time distribution
--   🔎 API selection
--   💡 Reliability insights
+- 📈 Response-time trends
+- 📊 API performance comparison
+- 🐢 Slowest APIs
+- ⚡ Fastest APIs
+- 🥧 Response-time distribution
+- 🔎 API selection
+- 💡 Reliability insights
 
-The Analytics page is designed to provide a performance-focused view
-rather than simply repeating the Dashboard statistics.
+The Analytics page is designed to provide a performance-focused view rather than simply repeating the Dashboard statistics.
 
-------------------------------------------------------------------------
+---
 
 # 📄 Application Pages
 
@@ -344,7 +399,7 @@ rather than simply repeating the Dashboard statistics.
 
 Provides a high-level monitoring overview.
 
-``` text
+```text
 ┌──────────────┬──────────────┬──────────────┬──────────────┐
 │ Total APIs   │ Healthy APIs │ Failed APIs  │    Uptime    │
 └──────────────┴──────────────┴──────────────┴──────────────┘
@@ -357,57 +412,57 @@ Provides a high-level monitoring overview.
         └─────────────────────────────┘
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 🔗 APIs
 
 The API management page supports:
 
--   Add API
--   Search API
--   Refresh
--   View details
--   Delete API
--   Status display
--   Response-time display
--   Auto-scrolling API list
+- Add API
+- Search API
+- Refresh
+- View details
+- Delete API
+- Status display
+- Response-time display
+- Auto-scrolling API list
 
-------------------------------------------------------------------------
+---
 
 ## 🔎 API Details
 
 Displays detailed information for an individual API:
 
--   Current status
--   Uptime
--   Average response time
--   Fastest response
--   Slowest response
--   Health analysis
--   Alerts
--   Recent checks
+- Current status
+- Uptime
+- Average response time
+- Fastest response
+- Slowest response
+- Health analysis
+- Alerts
+- Recent checks
 
-------------------------------------------------------------------------
+---
 
 ## 📈 Analytics
 
 Provides visual performance analysis using Recharts.
 
-------------------------------------------------------------------------
+---
 
 ## ⏱️ History
 
 Displays recorded health-check activity with:
 
--   API
--   Timestamp
--   Status
--   HTTP status
--   Response time
+- API
+- Timestamp
+- Status
+- HTTP status
+- Response time
 
 Supports API filtering, search, refresh, and Load More.
 
-------------------------------------------------------------------------
+---
 
 ## ⚙️ Settings
 
@@ -415,22 +470,22 @@ Users can configure:
 
 ### Appearance
 
--   ☀️ Light mode
--   🌙 Dark mode
+- ☀️ Light mode
+- 🌙 Dark mode
 
 ### Dashboard Behavior
 
--   Auto-refresh
--   Refresh interval
+- Auto-refresh
+- Refresh interval
 
 ### API Management
 
--   Delete confirmation
--   API list auto-scroll
+- Delete confirmation
+- API list auto-scroll
 
 Settings are stored in browser LocalStorage.
 
-------------------------------------------------------------------------
+---
 
 # 🗄️ Database Design
 
@@ -438,7 +493,7 @@ The application uses **MySQL** for persistent monitoring data.
 
 ### API Entity
 
-``` text
+```text
 ┌───────────────┬──────────────────────────────┐
 │ Field         │ Description                  │
 ├───────────────┼──────────────────────────────┤
@@ -453,7 +508,7 @@ The application uses **MySQL** for persistent monitoring data.
 
 Stores individual monitoring results:
 
-``` text
+```text
 apiId
 checkedAt
 httpStatus
@@ -463,30 +518,37 @@ status
 
 ### HealthAnalysis
 
-Provides calculated health and performance information from health-check
-data.
+Provides calculated health and performance information from health-check data.
 
-------------------------------------------------------------------------
+---
 
 # 🌐 REST API
 
-Base URL: http://localhost:8080/api/monitors
+### Local Base URL
 
-``` text
-
-  Method     Endpoint                        Purpose
-  ---------- ------------------------------- ----------------------
-  `POST`     `/api/monitors`                 Add API
-  `GET`      `/api/monitors`                 Get all APIs
-  `GET`      `/api/monitors/{id}`            Get API by ID
-  `DELETE`   `/api/monitors/{id}`            Delete API
-  `GET`      `/api/monitors/{id}/check`      Perform health check
-  `GET`      `/api/monitors/{id}/history`    Get full history
-  `GET`      `/api/monitors/{id}/recent`     Get recent checks
-  `GET`      `/api/monitors/{id}/uptime`     Calculate uptime
-  `GET`      `/api/monitors/{id}/analysis`   Get health analysis
+```text
+http://localhost:8081/api/monitors
 ```
-------------------------------------------------------------------------
+
+### Production Base URL
+
+```text
+https://api-health-analyzer.onrender.com/api/monitors
+```
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `POST` | `/api/monitors` | Add API |
+| `GET` | `/api/monitors` | Get all APIs |
+| `GET` | `/api/monitors/{id}` | Get API by ID |
+| `DELETE` | `/api/monitors/{id}` | Delete API |
+| `GET` | `/api/monitors/{id}/check` | Perform health check |
+| `GET` | `/api/monitors/{id}/history` | Get full history |
+| `GET` | `/api/monitors/{id}/recent` | Get recent checks |
+| `GET` | `/api/monitors/{id}/uptime` | Calculate uptime |
+| `GET` | `/api/monitors/{id}/analysis` | Get health analysis |
+
+---
 
 # 🛡️ Validation & Exception Handling
 
@@ -494,7 +556,7 @@ The backend validates incoming API information before persistence.
 
 Example validation includes:
 
-``` java
+```java
 @NotBlank
 private String name;
 
@@ -505,15 +567,14 @@ private String url;
 
 The application also uses:
 
-``` text
+```text
 ApiNotFoundException
 GlobalExceptionHandler
 ```
 
-to provide controlled error responses for invalid API IDs and validation
-failures.
+to provide controlled error responses for invalid API IDs and validation failures.
 
-------------------------------------------------------------------------
+---
 
 # 🧹 Health-Check Data Cleanup
 
@@ -521,24 +582,24 @@ The backend includes scheduled cleanup for older health-check records.
 
 The cleanup operation is transactional and uses:
 
-``` java
+```java
 healthCheckRepository.deleteOlderThan(cutoff);
 ```
 
-The current scheduler configuration removes records older than the
-configured cleanup threshold.
+The scheduler removes records older than the configured cleanup threshold.
 
-------------------------------------------------------------------------
+---
 
 # 📁 Project Structure
 
-``` text
+```text
 Api-Health-Analyzer/
 │
 ├── README.md
 │
 ├── backend/
 │   └── api_hp/
+│       ├── Dockerfile
 │       ├── pom.xml
 │       └── src/
 │           └── main/
@@ -572,6 +633,7 @@ Api-Health-Analyzer/
 │
 └── frontend/
     └── api-health-ui/
+        ├── vercel.json
         ├── package.json
         ├── vite.config.js
         ├── index.html
@@ -605,7 +667,7 @@ Api-Health-Analyzer/
                 └── SettingsContext.jsx
 ```
 
-------------------------------------------------------------------------
+---
 
 # 🚀 Getting Started
 
@@ -613,41 +675,41 @@ Api-Health-Analyzer/
 
 Install:
 
--   JDK 25
--   Maven
--   MySQL
--   Node.js
--   npm
--   IntelliJ IDEA
+- JDK 25
+- Maven
+- MySQL
+- Node.js
+- npm
+- IntelliJ IDEA
 
-------------------------------------------------------------------------
+---
 
 ## 1️⃣ Clone
 
-``` bash
+```bash
 git clone https://github.com/Ansh-Verma5974/Api-Health-Analyzer.git
 cd Api-Health-Analyzer
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 2️⃣ Configure MySQL
 
-Create the database used by your backend:
+For local development, create the database:
 
-``` sql
+```sql
 CREATE DATABASE apihp;
 ```
 
 Configure your local database credentials in:
 
-``` text
+```text
 backend/api_hp/src/main/resources/application.properties
 ```
 
 Example:
 
-``` properties
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/apihp
 spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
@@ -655,51 +717,53 @@ spring.datasource.password=YOUR_PASSWORD
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-------------------------------------------------------------------------
+> Never commit real database credentials or passwords to GitHub. Use environment variables for deployed environments.
+
+---
 
 ## 3️⃣ Start Backend
 
 Open the backend in IntelliJ IDEA and run:
 
-``` text
+```text
 ApiHpApplication.java
 ```
 
-Backend:
+Local backend:
 
-``` text
+```text
 http://localhost:8081
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 4️⃣ Start Frontend
 
 Open a terminal inside:
 
-``` text
+```text
 frontend/api-health-ui
 ```
 
 Install dependencies:
 
-``` bash
+```bash
 npm install
 ```
 
 Start Vite:
 
-``` bash
+```bash
 npm run dev
 ```
 
-Frontend:
+Local frontend:
 
-``` text
+```text
 http://localhost:5173
 ```
 
-------------------------------------------------------------------------
+---
 
 # 🧪 Testing
 
@@ -707,7 +771,7 @@ The backend REST API has been tested using Postman.
 
 Core operations include:
 
-``` text
+```text
 POST    /api/monitors
 GET     /api/monitors
 GET     /api/monitors/{id}
@@ -719,18 +783,19 @@ GET     /api/monitors/{id}/uptime
 GET     /api/monitors/{id}/analysis
 ```
 
-The React frontend consumes these backend endpoints through the
-centralized:
+The React frontend consumes these backend endpoints through the centralized:
 
-``` text
+```text
 src/services/apiService.js
 ```
 
-------------------------------------------------------------------------
+---
 
 # 🔗 Frontend ↔ Backend Integration
 
-``` text
+### Production
+
+```text
 React Component
       │
       ▼
@@ -740,7 +805,7 @@ apiService.js
 Fetch API
       │
       ▼
-Spring Boot REST Controller
+Render Spring Boot REST API
       │
       ▼
 Service Layer
@@ -749,85 +814,83 @@ Service Layer
 Repository
       │
       ▼
-MySQL
+Aiven MySQL
 ```
 
-Example:
+### Production API Base URL
 
-``` javascript
-const response = await fetch(
-    "http://localhost:8080/api/monitors"
-);
+```javascript
+const API_BASE_URL =
+    "https://api-health-analyzer.onrender.com";
 ```
 
-The response is then used by React to update the dashboard and other
-pages.
+The response is then used by React to update the dashboard and other pages.
 
-------------------------------------------------------------------------
+---
 
 # 🎯 What This Project Demonstrates
 
 This project demonstrates practical implementation of:
 
--   Java programming
--   Spring Boot
--   REST API development
--   Layered backend architecture
--   Dependency Injection
--   Spring Data JPA
--   Hibernate
--   MySQL
--   HTTP client programming
--   Scheduled background tasks
--   CRUD operations
--   API monitoring
--   Response-time measurement
--   Data persistence
--   Exception handling
--   Request validation
--   React component architecture
--   React Router
--   Context API
--   LocalStorage
--   REST API integration
--   Data visualization
--   Full-stack development
+- Java programming
+- Spring Boot
+- REST API development
+- Layered backend architecture
+- Dependency Injection
+- Spring Data JPA
+- Hibernate
+- MySQL
+- HTTP client programming
+- Scheduled background tasks
+- CRUD operations
+- API monitoring
+- Response-time measurement
+- Data persistence
+- Exception handling
+- Request validation
+- React component architecture
+- React Router
+- Context API
+- LocalStorage
+- REST API integration
+- Data visualization
+- Full-stack development
+- Cloud deployment
 
-------------------------------------------------------------------------
+---
 
 # 🔮 Future Enhancements
 
 Potential future improvements:
 
--   🔐 User authentication and authorization
--   📧 Email alerts
--   🔔 Real-time failure notifications
--   ☁️ Cloud deployment
--   🐳 Docker support
--   📱 More responsive/mobile-focused UI
--   📊 Exportable monitoring reports
--   👥 Role-based access
--   ⚙️ Frontend control for monitoring schedules
+- 🔐 User authentication and authorization
+- 📧 Email alerts
+- 🔔 Real-time failure notifications
+- 📊 Exportable monitoring reports
+- 👥 Role-based access
+- ⚙️ Frontend control for monitoring schedules
+- 📱 Progressive Web App support
+- 📈 More advanced performance analytics
 
-------------------------------------------------------------------------
+---
 
 # 👨‍💻 Author
 
-
 <p align="center">
-<strong> Ansh Verma </strong> <br> 
- B.Tech --
-Computer Science & Engineering
+<strong>Ansh Verma</strong><br>
+B.Tech — Computer Science & Engineering
 </p>
 
 <p align="center">
 <a href="https://github.com/Ansh-Verma5974">
-<img src="https://img.shields.io/badge/GitHub-Ansh--Verma5974-181717?style=for-the-badge&logo=github" alt="GitHub"></a>
+<img src="https://img.shields.io/badge/GitHub-Ansh--Verma5974-181717?style=for-the-badge&logo=github" alt="GitHub">
+</a>
 </p>
 
-------------------------------------------------------------------------
+---
 
 # ⭐ Project Repository
+
 <p align="center">
 <a href="https://github.com/Ansh-Verma5974/Api-Health-Analyzer">
 <img src="https://img.shields.io/badge/View%20Project%20on%20GitHub-→-168CFF?style=for-the-badge&logo=github" alt="View Project">
@@ -835,6 +898,6 @@ Computer Science & Engineering
 </p>
 
 <p align="center">
-<strong>🚀 Monitor. Analyze.Improve.</strong>
-<br><em>Built as a Java full-stack project for learning and practical development.</em>
+<strong>🚀 Monitor. Analyze. Improve.</strong><br>
+<em>Built as a Java full-stack project for learning and practical development.</em>
 </p>
